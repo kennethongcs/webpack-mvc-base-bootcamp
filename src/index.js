@@ -1,20 +1,33 @@
 import './styles.scss';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import pokemon from './react-pokedex.json';
 
-function BigNumber({ number }) {
-  return <h1>number: {number}</h1>;
-}
+const PokemonLoop = (pokemonData) => {
+  const name = pokemonData.pokemon.names.en;
+  const type = pokemonData.pokemon.types;
+  const element = (
+    <div>
+      <h1>Pokemon: {name}</h1>
+      <p>Type: {type}</p>
+    </div>
+  );
+  return element;
+};
 
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) => (
-  <BigNumber key={number.toString()} number={number} />
-  // <h1 key={number.toString()}>{number}</h1>
-));
+const loop = pokemon.pokedex.map(
+  (pokemonData, index) =>
+    index < 20 && (
+      <PokemonLoop
+        key={pokemonData.national_id.toString()}
+        pokemon={pokemonData}
+      />
+    )
+);
 
 const myEl = (
   <div>
-    <ul>{listItems}</ul>
+    <ul>{loop}</ul>
   </div>
 );
 
