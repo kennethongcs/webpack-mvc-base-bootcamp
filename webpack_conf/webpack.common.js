@@ -26,20 +26,18 @@ module.exports = {
         // Regex to decide which files to run Babel on
         test: /\.(js|mjs|jsx)$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
           },
-        }],
+        ],
       },
       {
         test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
